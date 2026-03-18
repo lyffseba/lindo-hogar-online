@@ -15,7 +15,7 @@ DB_INSTANCE_NAME="lindo-hogar-db"
 echo "Using Project ID: $PROJECT_ID in Region: $REGION"
 
 # 2. Enable Required APIs
-echo "Enabling necessary APIs (Cloud Run, Cloud Build, Cloud SQL, Storage, IAM, Redis, PubSub)..."
+echo "Enabling necessary APIs (Cloud Run, Cloud Build, Cloud SQL, Storage, IAM, PubSub)..."
 gcloud services enable \
   run.googleapis.com \
   cloudbuild.googleapis.com \
@@ -23,7 +23,6 @@ gcloud services enable \
   storage-component.googleapis.com \
   iamcredentials.googleapis.com \
   identitytoolkit.googleapis.com \
-  redis.googleapis.com \
   pubsub.googleapis.com
 
 # 3. Create Cloud Storage Bucket for Product Media
@@ -42,11 +41,9 @@ echo "Creating Cloud SQL PostgreSQL instance (this may take 5-10 minutes)..."
 if ! gcloud sql instances describe $DB_INSTANCE_NAME > /dev/null 2>&1; then
   gcloud sql instances create $DB_INSTANCE_NAME \
     --database-version=POSTGRES_15 \
-    --cpu=1 \
-    --memory=3840MB \
     --region=$REGION \
     --root-password="ChangeMe123!" \
-    --tier=db-custom-1-3840
+    --tier=db-f1-micro
   echo "✅ Cloud SQL instance created."
 else
   echo "⚠️ Cloud SQL instance already exists."

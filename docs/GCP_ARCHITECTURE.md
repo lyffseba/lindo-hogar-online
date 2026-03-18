@@ -10,9 +10,9 @@ Lindo Hogar Online is fully integrated with Google Cloud services, managed entir
    - **Deployment:** Handled via Google Cloud Build (CI/CD) and Docker.
 
 2. **Database & Data Storage**
-   - **Catalog & Orders:** Google Cloud SQL for PostgreSQL. This provides robust, ACID-compliant relational data storage. We interact with it using **Drizzle ORM** for maximum type-safety, minimal bundle size, and edge compatibility.
-   - **Product Media:** Google Cloud Storage (GCS) buckets for all images, served via Cloud CDN for ultra-fast global delivery.
-   - **Session & Caching (State):** Google Cloud Memorystore (Redis). Used to cache high-traffic queries and manage persistent guest shopping cart states securely across server instances.
+   - **Catalog & Orders:** Google Cloud SQL for PostgreSQL. We use the **`db-f1-micro`** tier for extreme cost-effectiveness (best price-to-value ratio for a startup) while still getting robust, ACID-compliant relational data storage. We interact with it using **Drizzle ORM** for maximum type-safety and minimal bundle size.
+   - **Product Media:** Google Cloud Storage (GCS) buckets for all images, served via Cloud CDN for ultra-fast global delivery (heavily leveraging the free tier).
+   - **Session & Caching (State):** Firebase Realtime Database or Next.js Native Caching. By avoiding expensive fixed-cost services like Cloud Memorystore (Redis), we get serverless scale-to-zero capabilities for cart state storage, fitting perfectly within the Firebase free tier.
 
 3. **Event-Driven Async Systems**
    - **Message Broker:** Google Cloud Pub/Sub
