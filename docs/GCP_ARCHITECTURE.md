@@ -5,9 +5,9 @@ Lindo Hogar Online is fully integrated with Google Cloud services, managed entir
 ## Core GCP Architecture
 
 1. **Frontend Hosting (Next.js 15 App Router)**
-   - **Service:** Google Cloud Run
-   - **Why:** Cloud Run natively supports Docker containers, making it the perfect serverless platform for Next.js SSR and API routes. It scales to zero and scales out instantly during high traffic.
-   - **Deployment:** Handled via Google Cloud Build (CI/CD) and Docker.
+   - **Service:** Netlify
+   - **Why:** Netlify provides a seamless developer experience, native support for Next.js App Router (via its v5 runtime plugin), and zero-configuration Edge functions. It easily connects to GitHub and scales automatically with an incredible free tier.
+   - **Deployment:** Handled via Netlify CLI and continuous deployment through GitHub/Netlify linkage.
 
 2. **Database & Data Storage**
    - **Catalog & Orders:** Google Cloud SQL for PostgreSQL. We use the **`db-f1-micro`** tier for extreme cost-effectiveness (best price-to-value ratio for a startup) while still getting robust, ACID-compliant relational data storage. We interact with it using **Drizzle ORM** for maximum type-safety and minimal bundle size.
