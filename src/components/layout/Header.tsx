@@ -32,13 +32,13 @@ export default function Header() {
             <Link href="/catalog" className="text-sm font-medium text-gray-700 hover:text-black">
               Novedades
             </Link>
-            <Link href="/catalog/sala" className="text-sm font-medium text-gray-700 hover:text-black">
+            <Link href="/catalog/salas" className="text-sm font-medium text-gray-700 hover:text-black">
               Salas
             </Link>
-            <Link href="/catalog/comedor" className="text-sm font-medium text-gray-700 hover:text-black">
+            <Link href="/catalog/comedores" className="text-sm font-medium text-gray-700 hover:text-black">
               Comedores
             </Link>
-            <Link href="/catalog/alcoba" className="text-sm font-medium text-gray-700 hover:text-black">
+            <Link href="/catalog/alcobas" className="text-sm font-medium text-gray-700 hover:text-black">
               Alcobas
             </Link>
             <Link href="/catalog/decoracion" className="text-sm font-medium text-gray-700 hover:text-black">

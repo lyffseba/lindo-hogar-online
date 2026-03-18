@@ -14,11 +14,18 @@ export default async function AdminDashboard({
 }) {
   const { success } = await searchParams;
   
-  // Fetch existing real products from Supabase
-  const liveProducts = await db.query.products.findMany({
-    orderBy: [desc(products.createdAt)],
-    limit: 10,
-  });
+  let liveProducts: any[] = [];
+  let dbError = null;
+  
+  try {
+    // Fetch existing real products from Supabase
+    liveProducts = await db.query.products.findMany({
+      orderBy: [desc(products.createdAt)],
+      limit: 10,
+    });
+  } catch (error: any) {
+    dbError = error.message || String(error);
+  }
 
   const formatPrice = (price: string) => {
     return new Intl.NumberFormat('es-CO', {
@@ -36,6 +43,12 @@ export default async function AdminDashboard({
           <p className="text-neutral-500 mt-1">Conectado a Supabase PostgreSQL</p>
         </div>
       </div>
+
+      {dbError && (
+        <div className="bg-red-50 border border-red-200 text-red-800 rounded-md p-4 mb-8">
+          <strong>Error de Base de Datos:</strong> {dbError}
+        </div>
+      )}
 
       {success === 'true' && (
         <div className="bg-green-50 border border-green-200 text-green-800 rounded-md p-4 mb-8">
@@ -124,7 +137,7 @@ export default async function AdminDashboard({
           <div className="bg-white border rounded-lg p-6 shadow-sm">
             <h2 className="text-xl font-bold mb-6 border-b pb-4">Inventario en Supabase ({liveProducts.length})</h2>
             
-            {liveProducts.length === 0 ? (
+            {liveProducts.length === 0 && !dbError ? (
               <div className="text-center py-12 text-neutral-500 bg-neutral-50 rounded-md border border-dashed">
                 No hay productos en la base de datos real todavía.
                 <br />
@@ -148,7 +161,6 @@ export default async function AdminDashboard({
                           <img src={product.imageUrl || ''} alt="" className="w-10 h-10 object-cover rounded border" />
                           <div>
                             {product.name}
-                            {/* <div className="text-xs text-neutral-500 font-normal">{product.category}</div> */}
                           </div>
                         </td>
                         <td className="px-4 py-4 text-neutral-600">{formatPrice(product.price)}</td>
