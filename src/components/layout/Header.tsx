@@ -1,7 +1,12 @@
+'use client';
+
 import Link from 'next/link';
 import { ShoppingBag, Search, Menu, User } from 'lucide-react';
+import { useCartStore } from '@/store/cartStore';
 
 export default function Header() {
+  const { getTotalItems, setIsOpen } = useCartStore();
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -43,11 +48,16 @@ export default function Header() {
             <Link href="/account" className="text-gray-500 hover:text-black hidden sm:block">
               <User className="h-5 w-5" />
             </Link>
-            <button className="text-gray-500 hover:text-black relative">
+            <button 
+              className="text-gray-500 hover:text-black relative"
+              onClick={() => setIsOpen(true)}
+            >
               <ShoppingBag className="h-5 w-5" />
-              <span className="absolute -right-1.5 -top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-black text-[10px] font-bold text-white">
-                0
-              </span>
+              {getTotalItems() > 0 && (
+                <span className="absolute -right-1.5 -top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-black text-[10px] font-bold text-white">
+                  {getTotalItems()}
+                </span>
+              )}
             </button>
           </div>
         </div>

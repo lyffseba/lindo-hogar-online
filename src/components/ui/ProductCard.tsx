@@ -1,10 +1,15 @@
+'use client';
+
 import Image from 'next/image';
 import Link from 'next/link';
 import { ShoppingCart } from 'lucide-react';
 import { Button } from './Button';
 import type { Product } from '@/lib/mockData';
+import { useCartStore } from '@/store/cartStore';
 
 export function ProductCard({ product }: { product: Product }) {
+  const { addItem } = useCartStore();
+
   // Format price as Colombian Pesos (COP)
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('es-CO', {
@@ -63,7 +68,7 @@ export function ProductCard({ product }: { product: Product }) {
           <Button 
             variant="accent" 
             className="w-full gap-2"
-            onClick={() => console.log('Add to cart clicked:', product.id)}
+            onClick={() => addItem(product)}
           >
             <ShoppingCart className="h-4 w-4" />
             Agregar
