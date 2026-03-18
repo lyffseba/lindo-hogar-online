@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Lindo Hogar Online 🛍️
 
-## Getting Started
+Welcome to the **Lindo Hogar Online** frontend repository! This project is built from the ground up using modern e-commerce best practices to ensure a highly scalable, performant, and maintainable retail platform.
 
-First, run the development server:
+## 🚀 Tech Stack Foundation
+
+- **Framework:** [Next.js (App Router)](https://nextjs.org/) for hybrid static/server-rendered React applications.
+- **Language:** [TypeScript](https://www.typescriptlang.org/) for end-to-end type safety.
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/) for utility-first styling.
+- **Linting & Formatting:** [ESLint](https://eslint.org/) and [Prettier](https://prettier.io/) configured for strict code quality.
+
+## 📁 Project Architecture
+
+Our folder structure is designed to separate concerns efficiently and scale cleanly.
+
+```text
+src/
+├── app/                  # Next.js App Router endpoints, pages, and layouts
+├── components/
+│   ├── ui/               # Reusable, atomic UI components (buttons, inputs, etc.)
+│   └── layout/           # High-level layout components (Header, Footer, Sidebar)
+├── config/               # Environment constants, site config, and feature flags
+├── hooks/                # Custom React hooks (e.g., useCart, useAuth)
+├── lib/                  # Library wrappers and utility instances (e.g., fetchers, analytics)
+├── services/             # API interaction layers and external service integrations
+├── styles/               # Global CSS files and Tailwind configurations
+├── types/                # Global TypeScript declarations and shared interfaces
+└── utils/                # Pure helper functions and formatters
+```
+
+## 🛠️ Getting Started
+
+First, install the required dependencies using `npm` (ensure you are using a modern Node.js version >= 18).
+
+```bash
+npm install
+```
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📏 Retailer Best Practices Enforced
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. **Performance First:** Next.js allows us to statically generate pages (SSG) for high-performance product catalogs, and server-side render (SSR) dynamic content where needed.
+2. **Component Isolation:** UI components are atomic and pure, ensuring they can be reused across different flows (e.g., product page, checkout, cart).
+3. **Strict Typing:** TypeScript ensures predictable code and reduces runtime exceptions for complex states like carts or checkouts.
+4. **Standardized Formatting:** Prettier enforces consistent code style automatically.
 
-## Learn More
+## 📦 Next Steps
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Integrate a state management solution (e.g., Zustand or Redux Toolkit) depending on cart complexity.
+- Connect to an eCommerce backend (e.g., Medusa, Shopify Storefront API, or custom).
+- Set up automated unit testing (Jest/Vitest + React Testing Library) and E2E testing (Playwright).
