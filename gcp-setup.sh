@@ -15,14 +15,16 @@ DB_INSTANCE_NAME="lindo-hogar-db"
 echo "Using Project ID: $PROJECT_ID in Region: $REGION"
 
 # 2. Enable Required APIs
-echo "Enabling necessary APIs (Cloud Run, Cloud Build, Cloud SQL, Storage, IAM)..."
+echo "Enabling necessary APIs (Cloud Run, Cloud Build, Cloud SQL, Storage, IAM, Redis, PubSub)..."
 gcloud services enable \
   run.googleapis.com \
   cloudbuild.googleapis.com \
   sqladmin.googleapis.com \
   storage-component.googleapis.com \
   iamcredentials.googleapis.com \
-  identitytoolkit.googleapis.com
+  identitytoolkit.googleapis.com \
+  redis.googleapis.com \
+  pubsub.googleapis.com
 
 # 3. Create Cloud Storage Bucket for Product Media
 echo "Creating Cloud Storage bucket: gs://$BUCKET_NAME"
