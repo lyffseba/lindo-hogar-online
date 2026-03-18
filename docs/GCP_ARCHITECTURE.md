@@ -10,9 +10,9 @@ Lindo Hogar Online is fully integrated with Google Cloud services, managed entir
    - **Deployment:** Handled via Netlify CLI and continuous deployment through GitHub/Netlify linkage.
 
 2. **Database & Data Storage**
-   - **Catalog & Orders:** Google Cloud SQL for PostgreSQL. We use the **`db-f1-micro`** tier for extreme cost-effectiveness (best price-to-value ratio for a startup) while still getting robust, ACID-compliant relational data storage. We interact with it using **Drizzle ORM** for maximum type-safety and minimal bundle size.
-   - **Product Media:** Google Cloud Storage (GCS) buckets for all images, served via Cloud CDN for ultra-fast global delivery (heavily leveraging the free tier).
-   - **Session & Caching (State):** Firebase Realtime Database or Next.js Native Caching. By avoiding expensive fixed-cost services like Cloud Memorystore (Redis), we get serverless scale-to-zero capabilities for cart state storage, fitting perfectly within the Firebase free tier.
+   - **Catalog & Orders:** Serverless PostgreSQL (Neon.tech or Supabase). To maintain **strictly $0/month costs**, we are bypassing Google Cloud SQL (which has a minimum $9/mo cost) and using a serverless Postgres provider with a perpetual free tier. We still interact with it using **Drizzle ORM** for maximum type-safety, but the hosting is 100% free.
+   - **Product Media:** Google Cloud Storage (GCS) buckets for all images, served via Cloud CDN (heavily leveraging the 5GB free tier).
+   - **Session & Caching (State):** Next.js Native Caching and Local Storage (Zustand). Strictly $0 cost.
 
 3. **Event-Driven Async Systems**
    - **Message Broker:** Google Cloud Pub/Sub
