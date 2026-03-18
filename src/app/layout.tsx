@@ -1,4 +1,4 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
 import './globals.css';
 import Header from '@/components/layout/Header';
@@ -15,9 +15,25 @@ const geistMono = Geist_Mono({
   subsets: ['latin'],
 });
 
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1, // Prevents iOS input zoom on forms
+  userScalable: false,
+  themeColor: '#ffffff', // Ensures the iPhone 15 dynamic island/status bar blends perfectly
+};
+
 export const metadata: Metadata = {
   title: 'Lindo Hogar Online',
   description: 'Muebles y decoración de calidad para transformar tu hogar.',
+  appleWebApp: {
+    capable: true,
+    title: 'Lindo Hogar',
+    statusBarStyle: 'default',
+  },
+  formatDetection: {
+    telephone: false,
+  },
 };
 
 export default function RootLayout({

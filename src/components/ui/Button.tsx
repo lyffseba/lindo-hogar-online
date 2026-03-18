@@ -28,13 +28,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
     // Size styles
     if (size === 'default') {
-      classes += 'h-9 px-4 py-2 ';
+      classes += 'h-11 px-4 py-2 ';
     } else if (size === 'sm') {
-      classes += 'h-8 rounded-md px-3 text-xs ';
+      classes += 'h-9 rounded-md px-3 text-xs ';
     } else if (size === 'lg') {
-      classes += 'h-10 rounded-md px-8 ';
+      classes += 'h-12 rounded-md px-8 text-base ';
     } else if (size === 'icon') {
-      classes += 'h-9 w-9 ';
+      classes += 'h-11 w-11 ';
     }
 
     if (className) {
