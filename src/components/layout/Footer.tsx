@@ -16,9 +16,9 @@ export default function Footer() {
           <div>
             <h3 className="font-semibold text-gray-900 mb-4">Categorías</h3>
             <ul className="space-y-3">
-              <li><Link href="/catalog/sala" className="hover:text-black transition">Salas</Link></li>
-              <li><Link href="/catalog/comedor" className="hover:text-black transition">Comedores</Link></li>
-              <li><Link href="/catalog/alcoba" className="hover:text-black transition">Alcobas</Link></li>
+              <li><Link href="/catalog/salas" className="hover:text-black transition">Salas</Link></li>
+              <li><Link href="/catalog/comedores" className="hover:text-black transition">Comedores</Link></li>
+              <li><Link href="/catalog/alcobas" className="hover:text-black transition">Alcobas</Link></li>
               <li><Link href="/catalog/decoracion" className="hover:text-black transition">Decoración</Link></li>
             </ul>
           </div>

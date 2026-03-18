@@ -3,9 +3,15 @@
 import Link from 'next/link';
 import { ShoppingBag, Search, Menu, User } from 'lucide-react';
 import { useCartStore } from '@/store/cartStore';
+import { useEffect, useState } from 'react';
 
 export default function Header() {
   const { getTotalItems, setIsOpen } = useCartStore();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-white">
@@ -27,13 +33,13 @@ export default function Header() {
               Novedades
             </Link>
             <Link href="/catalog/sala" className="text-sm font-medium text-gray-700 hover:text-black">
-              Sala
+              Salas
             </Link>
             <Link href="/catalog/comedor" className="text-sm font-medium text-gray-700 hover:text-black">
-              Comedor
+              Comedores
             </Link>
             <Link href="/catalog/alcoba" className="text-sm font-medium text-gray-700 hover:text-black">
-              Alcoba
+              Alcobas
             </Link>
             <Link href="/catalog/decoracion" className="text-sm font-medium text-gray-700 hover:text-black">
               Decoración
@@ -53,7 +59,7 @@ export default function Header() {
               onClick={() => setIsOpen(true)}
             >
               <ShoppingBag className="h-5 w-5" />
-              {getTotalItems() > 0 && (
+              {mounted && getTotalItems() > 0 && (
                 <span className="absolute -right-1.5 -top-1.5 flex h-4 w-4 items-center justify-center rounded-full bg-black text-[10px] font-bold text-white">
                   {getTotalItems()}
                 </span>

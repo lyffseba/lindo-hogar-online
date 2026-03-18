@@ -2,18 +2,23 @@ import { notFound } from 'next/navigation';
 import { MOCK_PRODUCTS } from '@/lib/mockData';
 import { ProductGrid } from '@/components/ui/ProductGrid';
 
+const normalize = (str: string) => 
+  str.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+
 // Pre-generate static params for the mock categories
 export function generateStaticParams() {
-  const categories = Array.from(new Set(MOCK_PRODUCTS.map((p) => p.category.toLowerCase())));
+  const categories = Array.from(new Set(MOCK_PRODUCTS.map((p) => normalize(p.category))));
   return categories.map((c) => ({ category: c }));
 }
 
 export default async function CategoryPage({ params }: { params: Promise<{ category: string }> }) {
   const { category } = await params;
+  const decodedCategory = decodeURIComponent(category);
   
-  // Filter products matching the category (case-insensitive)
+  // Filter products matching the category (case-insensitive and ignoring accents)
   const filteredProducts = MOCK_PRODUCTS.filter(
-    (p) => p.category.toLowerCase() === category.toLowerCase()
+    (p) => normalize(p.category) === normalize(decodedCategory) || 
+           normalize(p.category) === normalize(decodedCategory) + 's' // simple singular/plural fallback
   );
 
   if (filteredProducts.length === 0) {
