@@ -68,7 +68,7 @@ export default function ContactPage() {
                   Local 101-106<br />Bogotá
                 </div>
                 <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
-                  <span className="font-bold text-[#111111] block mb-1">CC Milenio Plaza</span>
+                  <span className="font-bold text-[#111111] block mb-1">Milenio Centro Comercial</span>
                   Local 103<br />Bogotá
                 </div>
                 <div className="bg-gray-50 p-4 rounded-xl border border-gray-100">
