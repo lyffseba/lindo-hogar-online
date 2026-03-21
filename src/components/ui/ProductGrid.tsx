@@ -11,13 +11,13 @@ export function ProductGrid({
   return (
     <div className="w-full">
       {title && (
-        <h2 className="mb-6 text-2xl font-bold tracking-tight text-[#111111] md:text-3xl">
+        <h2 className="mb-8 text-3xl font-black tracking-tight text-[#111111] md:text-4xl">
           {title}
         </h2>
       )}
 
-      {/* Added pt-4 here so the grid contents (like the LH user icons) don't touch the upper border if there's no title */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-5 pt-4 md:pt-6">
+      {/* Awwwards Academy Style Grid: Fewer columns, larger cards, more breathing room */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10 pt-4 md:pt-6">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
