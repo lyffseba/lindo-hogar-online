@@ -17,7 +17,7 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Filtro purificador de agua por gravedad, capacidad de 14 litros. Ideal para mantener el agua limpia y fresca en tu cocina.',
     price: 145950,
     category: 'Cocina',
-    imageUrl: 'https://images.unsplash.com/photo-1594911765275-c54c34a47817?auto=format&fit=crop&q=80&w=800',
+    imageUrl: 'https://images.unsplash.com/photo-1544457070-4cd773b4d71e?auto=format&fit=crop&q=80&w=800',
     isNew: true,
   },
   {
@@ -44,7 +44,7 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Freidora de aire digital Oster, cocina saludable sin aceite. Panel táctil y capacidad ideal para la familia.',
     price: 279950,
     category: 'Electrodomésticos',
-    imageUrl: 'https://images.unsplash.com/photo-1626200419188-3ca35d4ff076?auto=format&fit=crop&q=80&w=800',
+    imageUrl: 'https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&q=80&w=800',
   },
   {
     id: '5',
@@ -61,7 +61,7 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Humidificador con diseño estilo flannel, ideal para purificar el ambiente y usar con esencias aromáticas.',
     price: 129950,
     category: 'Decoración',
-    imageUrl: 'https://images.unsplash.com/photo-1601614358804-972109867566?auto=format&fit=crop&q=80&w=800',
+    imageUrl: 'https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=800',
     isNew: true,
   },
   {
@@ -70,7 +70,7 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Vajilla Corona de 16 piezas para 4 puestos. Diseño Mystic Red elegante para tus comidas especiales.',
     price: 149950,
     category: 'Comedores',
-    imageUrl: 'https://images.unsplash.com/photo-1611078696130-97645eb49776?auto=format&fit=crop&q=80&w=800',
+    imageUrl: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=800',
   },
   {
     id: '8',
@@ -87,7 +87,7 @@ export const MOCK_PRODUCTS: Product[] = [
     price: 279950,
     originalPrice: 320950,
     category: 'Electrodomésticos',
-    imageUrl: 'https://images.unsplash.com/photo-1585237832870-749e7bb2f690?auto=format&fit=crop&q=80&w=800',
+    imageUrl: 'https://images.unsplash.com/photo-1574269909862-7e1d70bb8078?auto=format&fit=crop&q=80&w=800',
   },
   {
     id: '10',
@@ -95,6 +95,6 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Mesa de planchar plegable y resistente, con base para la plancha y altura ajustable.',
     price: 159950,
     category: 'Lavandería',
-    imageUrl: 'https://images.unsplash.com/photo-1581428982868-e410dd1278f1?auto=format&fit=crop&q=80&w=800',
+    imageUrl: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&q=80&w=800',
   }
 ];
