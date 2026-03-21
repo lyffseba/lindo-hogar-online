@@ -4,9 +4,11 @@ import { useCartStore } from '@/store/cartStore';
 import { X, Trash2, Plus, Minus } from 'lucide-react';
 import Image from 'next/image';
 import { Button } from './Button';
+import { useRouter } from 'next/navigation';
 
 export function CartDrawer() {
   const { items, isOpen, setIsOpen, removeItem, updateQuantity, getTotalPrice } = useCartStore();
+  const router = useRouter();
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat('es-CO', {
@@ -18,19 +20,8 @@ export function CartDrawer() {
 
   const handleCheckout = () => {
     if (items.length === 0) return;
-
-    let text = `¡Hola! Me gustaría hacer el siguiente pedido en Lindo Hogar Online:%0A%0A`;
-    items.forEach((item) => {
-      text += `- ${item.quantity}x ${item.name} (${formatPrice(item.price)})%0A`;
-    });
-    text += `%0A*Total Estimado: ${formatPrice(getTotalPrice())}*`;
-
-    // Lindo Hogar Restrepo main WhatsApp number
-    const whatsappNumber = '573112774673';
-    const url = `https://wa.me/${whatsappNumber}?text=${text}`;
-    
-    window.open(url, '_blank');
     setIsOpen(false);
+    router.push('/checkout');
   };
 
   if (!isOpen) return null;
@@ -116,15 +107,14 @@ export function CartDrawer() {
               <p>{formatPrice(getTotalPrice())}</p>
             </div>
             <p className="text-sm text-neutral-500 mb-4">
-              Los envíos se coordinan directamente con nuestro asesor por WhatsApp.
+              Impuestos incluidos. El costo de envío se calcula en el siguiente paso.
             </p>
-            <Button 
-              variant="accent" 
-              className="w-full text-base py-6"
+            <button 
+              className="w-full bg-[#111111] hover:bg-[#175d9c] text-white font-bold text-lg py-4 rounded-xl shadow-lg transition-all"
               onClick={handleCheckout}
             >
-              Comprar por WhatsApp
-            </Button>
+              Finalizar Compra
+            </button>
           </div>
         )}
       </div>

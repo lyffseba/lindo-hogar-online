@@ -24,7 +24,7 @@ export default async function AdminDashboard({
       limit: 10,
     });
   } catch (error: unknown) {
-    dbError = error.message || String(error);
+    dbError = error instanceof Error ? error.message : String(error);
   }
 
   const formatPrice = (price: string) => {
