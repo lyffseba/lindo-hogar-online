@@ -11,7 +11,9 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
+    // Small delay to prevent synchronous setState warning and ensure hydration matches
+    const timer = setTimeout(() => setMounted(true), 10);
+    return () => clearTimeout(timer);
   }, []);
 
   const closeMenu = () => setIsMobileMenuOpen(false);
@@ -32,7 +34,7 @@ export default function Header() {
                 <Menu className="h-6 w-6" />
               </button>
               <Link href="/" className="flex-shrink-0 flex items-center">
-                <span className="text-2xl md:text-3xl font-black text-[#111111] tracking-tight">Lindo Hogar <span className="text-[#175d9c] font-bold text-lg md:text-xl">Online</span></span>
+                <span className="text-2xl md:text-3xl font-black text-[#175d9c] tracking-tight">Lindo Hogar <span className="text-[#e25d6b] font-medium text-lg md:text-xl">Online</span></span>
               </Link>
             </div>
 
@@ -52,10 +54,10 @@ export default function Header() {
 
             {/* Actions: Auth, Sell Button & Cart */}
             <div className="flex items-center space-x-2 md:space-x-4">
-              <Link href="/account" className="hidden lg:inline-block text-sm font-bold text-[#111111] hover:text-[#175d9c] px-3 py-2 transition-colors">
+              <Link href="/account" className="hidden lg:inline-block text-sm font-bold text-[#175d9c] hover:bg-blue-50 px-3 py-2 transition-colors">
                 Regístrate | Inicia sesión
               </Link>
-              <Link href="#" className="hidden md:inline-flex items-center justify-center px-5 py-2.5 border-2 border-[#111111] text-sm font-bold rounded-full text-[#111111] bg-white hover:bg-[#111111] hover:text-white transition-all shadow-sm whitespace-nowrap">
+              <Link href="#" className="hidden md:inline-flex items-center justify-center px-5 py-2.5 border-transparent text-sm font-medium rounded-md text-white bg-[#175d9c] hover:bg-[#114b7e] transition-all shadow-sm whitespace-nowrap">
                 Vender ahora
               </Link>
               
@@ -82,12 +84,12 @@ export default function Header() {
         <nav className="hidden md:block border-t border-gray-100">
           <div className="max-w-7xl mx-auto px-4 md:px-6 lg:px-8">
             <ul className="flex space-x-8 lg:space-x-10 text-sm font-bold text-gray-500 py-3 overflow-x-auto" style={{ scrollbarWidth: 'none' }}>
-              <li><Link href="/catalog" className="hover:text-[#111111] hover:underline underline-offset-[16px] decoration-2 whitespace-nowrap transition-colors">Dormitorio</Link></li>
-              <li><Link href="/catalog/salas" className="hover:text-[#111111] hover:underline underline-offset-[16px] decoration-2 whitespace-nowrap transition-colors">Salas</Link></li>
-              <li><Link href="/catalog/comedores" className="hover:text-[#111111] hover:underline underline-offset-[16px] decoration-2 whitespace-nowrap transition-colors">Comedores</Link></li>
-              <li><Link href="/catalog/alcobas" className="hover:text-[#111111] hover:underline underline-offset-[16px] decoration-2 whitespace-nowrap transition-colors">Alcobas</Link></li>
-              <li><Link href="/catalog/decoracion" className="hover:text-[#111111] hover:underline underline-offset-[16px] decoration-2 whitespace-nowrap transition-colors">Decoración</Link></li>
-              <li><Link href="/catalog/bebes" className="hover:text-[#111111] hover:underline underline-offset-[16px] decoration-2 whitespace-nowrap transition-colors">Bebés</Link></li>
+              <li><Link href="/catalog" className="hover:text-[#175d9c] hover:underline underline-offset-[16px] decoration-2 whitespace-nowrap transition-colors">Dormitorio</Link></li>
+              <li><Link href="/catalog/salas" className="hover:text-[#175d9c] hover:underline underline-offset-[16px] decoration-2 whitespace-nowrap transition-colors">Salas</Link></li>
+              <li><Link href="/catalog/comedores" className="hover:text-[#175d9c] hover:underline underline-offset-[16px] decoration-2 whitespace-nowrap transition-colors">Comedores</Link></li>
+              <li><Link href="/catalog/alcobas" className="hover:text-[#175d9c] hover:underline underline-offset-[16px] decoration-2 whitespace-nowrap transition-colors">Alcobas</Link></li>
+              <li><Link href="/catalog/decoracion" className="hover:text-[#175d9c] hover:underline underline-offset-[16px] decoration-2 whitespace-nowrap transition-colors">Decoración</Link></li>
+              <li><Link href="/catalog/bebes" className="hover:text-[#175d9c] hover:underline underline-offset-[16px] decoration-2 whitespace-nowrap transition-colors">Bebés</Link></li>
               <li><Link href="/catalog/ofertas" className="text-[#e25d6b] hover:text-[#c44957] hover:underline underline-offset-[16px] decoration-2 whitespace-nowrap transition-colors">Ofertas</Link></li>
             </ul>
           </div>
@@ -130,10 +132,10 @@ export default function Header() {
               </nav>
             </div>
             <div className="border-t p-6 flex flex-col gap-4 bg-gray-50">
-              <Link href="#" onClick={closeMenu} className="flex items-center justify-center py-4 text-white font-bold text-lg rounded-full bg-[#111111] hover:bg-black transition-colors shadow-md">
+              <Link href="#" onClick={closeMenu} className="flex items-center justify-center py-4 text-white font-bold text-lg rounded-full bg-[#175d9c] hover:bg-[#114b7e] transition-colors shadow-sm">
                 Vender ahora
               </Link>
-              <Link href="/account" onClick={closeMenu} className="flex items-center justify-center py-4 text-[#111111] font-bold text-lg border-2 border-[#111111] rounded-full bg-transparent hover:bg-gray-100 transition-colors">
+              <Link href="/account" onClick={closeMenu} className="flex items-center justify-center py-4 text-[#175d9c] font-medium text-lg border border-[#175d9c] rounded-md bg-white hover:bg-blue-50 transition-colors">
                 Regístrate | Inicia sesión
               </Link>
             </div>

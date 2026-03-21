@@ -14,7 +14,7 @@ export default async function AdminDashboard({
 }) {
   const { success } = await searchParams;
   
-  let liveProducts: any[] = [];
+  let liveProducts: typeof products.$inferSelect[] = [];
   let dbError = null;
   
   try {
@@ -23,7 +23,7 @@ export default async function AdminDashboard({
       orderBy: [desc(products.createdAt)],
       limit: 10,
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     dbError = error.message || String(error);
   }
 

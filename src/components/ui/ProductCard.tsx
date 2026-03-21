@@ -26,7 +26,7 @@ export function ProductCard({ product }: { product: Product }) {
         {/* Badges on Top Left */}
         <div className="absolute top-3 left-3 flex flex-col gap-2 z-10">
           {product.isNew && (
-            <div className="bg-[#111111] text-white text-[11px] font-black px-3 py-1.5 rounded-full shadow-sm uppercase tracking-wider">
+            <div className="bg-[#e25d6b] text-white text-[11px] font-black px-3 py-1.5 rounded-full shadow-sm uppercase tracking-wider">
               Nuevo
             </div>
           )}

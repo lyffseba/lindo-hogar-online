@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import { ProductGrid } from '@/components/ui/ProductGrid';
 import { MOCK_PRODUCTS } from '@/lib/mockData';
 
@@ -23,7 +22,7 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link 
                 href="/catalog" 
-                className="inline-flex items-center justify-center px-8 py-4 border-2 border-[#111111] text-lg font-black rounded-full text-white bg-[#111111] hover:bg-white hover:text-[#111111] transition-all shadow-md hover:shadow-xl w-full sm:w-auto"
+                className="inline-flex items-center justify-center px-8 py-4 border border-transparent text-lg font-bold rounded-md text-white bg-[#175d9c] hover:bg-[#114b7e] transition-all shadow-md hover:shadow-xl w-full sm:w-auto"
               >
                 Explorar Catálogo
               </Link>
@@ -60,7 +59,7 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8">
             
             <Link href="/catalog/dormitorio" className="flex flex-col group">
-              <div className="aspect-square rounded-3xl bg-[#f2f2f2] flex items-center justify-center mb-4 group-hover:bg-[#111111] transition-all overflow-hidden relative shadow-sm group-hover:shadow-xl group-hover:-translate-y-2">
+              <div className="aspect-square rounded-3xl bg-[#f2f2f2] flex items-center justify-center mb-4 group-hover:ring-4 group-hover:ring-[#175d9c] transition-all overflow-hidden relative shadow-sm group-hover:shadow-lg group-hover:-translate-y-1">
                  <span className="text-6xl group-hover:scale-110 transition-transform duration-500">🛏️</span>
               </div>
               <span className="text-xl font-black text-[#111111]">Dormitorio</span>
@@ -68,7 +67,7 @@ export default function Home() {
             </Link>
 
             <Link href="/catalog/comedores" className="flex flex-col group">
-              <div className="aspect-square rounded-3xl bg-[#f2f2f2] flex items-center justify-center mb-4 group-hover:bg-[#111111] transition-all overflow-hidden relative shadow-sm group-hover:shadow-xl group-hover:-translate-y-2">
+              <div className="aspect-square rounded-3xl bg-[#f2f2f2] flex items-center justify-center mb-4 group-hover:ring-4 group-hover:ring-[#175d9c] transition-all overflow-hidden relative shadow-sm group-hover:shadow-lg group-hover:-translate-y-1">
                  <span className="text-6xl group-hover:scale-110 transition-transform duration-500">🍽️</span>
               </div>
               <span className="text-xl font-black text-[#111111]">Cocina</span>
@@ -76,7 +75,7 @@ export default function Home() {
             </Link>
 
             <Link href="/catalog/salas" className="flex flex-col group">
-              <div className="aspect-square rounded-3xl bg-[#f2f2f2] flex items-center justify-center mb-4 group-hover:bg-[#111111] transition-all overflow-hidden relative shadow-sm group-hover:shadow-xl group-hover:-translate-y-2">
+              <div className="aspect-square rounded-3xl bg-[#f2f2f2] flex items-center justify-center mb-4 group-hover:ring-4 group-hover:ring-[#175d9c] transition-all overflow-hidden relative shadow-sm group-hover:shadow-lg group-hover:-translate-y-1">
                  <span className="text-6xl group-hover:scale-110 transition-transform duration-500">🛋️</span>
               </div>
               <span className="text-xl font-black text-[#111111]">Salas</span>
@@ -84,7 +83,7 @@ export default function Home() {
             </Link>
 
             <Link href="/catalog/decoracion" className="flex flex-col group">
-              <div className="aspect-square rounded-3xl bg-[#f2f2f2] flex items-center justify-center mb-4 group-hover:bg-[#111111] transition-all overflow-hidden relative shadow-sm group-hover:shadow-xl group-hover:-translate-y-2">
+              <div className="aspect-square rounded-3xl bg-[#f2f2f2] flex items-center justify-center mb-4 group-hover:ring-4 group-hover:ring-[#175d9c] transition-all overflow-hidden relative shadow-sm group-hover:shadow-lg group-hover:-translate-y-1">
                  <span className="text-6xl group-hover:scale-110 transition-transform duration-500">🖼️</span>
               </div>
               <span className="text-xl font-black text-[#111111]">Decoración</span>
@@ -92,7 +91,7 @@ export default function Home() {
             </Link>
 
             <Link href="/catalog/bebes" className="flex flex-col group">
-              <div className="aspect-square rounded-3xl bg-[#f2f2f2] flex items-center justify-center mb-4 group-hover:bg-[#111111] transition-all overflow-hidden relative shadow-sm group-hover:shadow-xl group-hover:-translate-y-2">
+              <div className="aspect-square rounded-3xl bg-[#f2f2f2] flex items-center justify-center mb-4 group-hover:ring-4 group-hover:ring-[#175d9c] transition-all overflow-hidden relative shadow-sm group-hover:shadow-lg group-hover:-translate-y-1">
                  <span className="text-6xl group-hover:scale-110 transition-transform duration-500">👶</span>
               </div>
               <span className="text-xl font-black text-[#111111]">Bebés</span>
