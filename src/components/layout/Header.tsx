@@ -32,7 +32,7 @@ export default function Header() {
                 <Menu className="h-6 w-6" />
               </button>
               <Link href="/" className="flex-shrink-0 flex items-center">
-                <span className="text-2xl md:text-3xl font-black text-primary-500 tracking-tight">Lindo Hogar</span>
+                <span className="text-2xl md:text-3xl font-black text-primary-500 tracking-tight">Lindo Hogar <span className="text-[#e25d6b] font-medium text-lg md:text-xl">Online</span></span>
               </Link>
             </div>
 

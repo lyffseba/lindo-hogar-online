@@ -23,10 +23,10 @@ export function ProductCard({ product }: { product: Product }) {
       {/* User Info (Vinted Style) */}
       <div className="flex items-center justify-between mb-2 px-1">
         <div className="flex items-center space-x-2">
-          <div className="w-6 h-6 rounded-full bg-gray-200 flex-shrink-0 flex items-center justify-center overflow-hidden">
-            <span className="text-[10px] font-bold text-gray-500">LH</span>
+          <div className="w-6 h-6 rounded-full bg-white border border-gray-200 flex-shrink-0 flex items-center justify-center overflow-hidden">
+            <span className="text-[9px] font-black text-[#175d9c]">LHO</span>
           </div>
-          <span className="text-xs font-medium text-gray-600 truncate max-w-[100px]">lindo_hogar_oficial</span>
+          <span className="text-xs font-medium text-gray-600 truncate max-w-[100px]">lindo_hogar_online</span>
         </div>
       </div>
       
