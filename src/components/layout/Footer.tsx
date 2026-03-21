@@ -26,16 +26,16 @@ export default function Footer() {
             <h3 className="font-semibold text-gray-900 mb-4">Servicio al Cliente</h3>
             <ul className="space-y-3">
               <li><Link href="/contact" className="hover:text-black transition">Contacto</Link></li>
-              <li><Link href="/faq" className="hover:text-black transition">Preguntas Frecuentes</Link></li>
-              <li><Link href="/shipping" className="hover:text-black transition">Envíos y Entregas</Link></li>
-              <li><Link href="/returns" className="hover:text-black transition">Devoluciones</Link></li>
+              <li><Link href="/contact" className="hover:text-black transition">Preguntas Frecuentes</Link></li>
+              <li><Link href="/contact" className="hover:text-black transition">Envíos y Entregas</Link></li>
+              <li><Link href="/contact" className="hover:text-black transition">Devoluciones</Link></li>
             </ul>
           </div>
           <div>
             <h3 className="font-semibold text-gray-900 mb-4">Legal</h3>
             <ul className="space-y-3">
-              <li><Link href="/terms" className="hover:text-black transition">Términos y Condiciones</Link></li>
-              <li><Link href="/privacy" className="hover:text-black transition">Política de Privacidad</Link></li>
+              <li><Link href="/contact" className="hover:text-black transition">Términos y Condiciones</Link></li>
+              <li><Link href="/contact" className="hover:text-black transition">Política de Privacidad</Link></li>
             </ul>
           </div>
         </div>
