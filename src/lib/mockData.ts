@@ -26,7 +26,7 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Comedor fabricado en madera de roble con sillas tapizadas. Diseño clásico que no pasa de moda.',
     price: 1800000,
     category: 'Comedores',
-    imageUrl: 'https://images.unsplash.com/photo-1617806118233-18e1c0945594?auto=format&fit=crop&q=80&w=800',
+    imageUrl: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&q=80&w=800',
   },
   {
     id: '3',
