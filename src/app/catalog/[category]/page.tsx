@@ -8,7 +8,7 @@ const normalize = (str: string) =>
 // Pre-generate static params for the mock categories
 export function generateStaticParams() {
   const categories = Array.from(new Set(MOCK_PRODUCTS.map((p) => normalize(p.category))));
-  return [...categories.map((c) => ({ category: c })), { category: 'ofertas' }, { category: 'bebes' }, { category: 'dormitorio' }];
+  return [...categories.map((c) => ({ category: c })), { category: 'ofertas' }, { category: 'bebes' }, { category: 'dormitorio' }, { category: 'salas' }, { category: 'comedores' }, { category: 'decoracion' }];
 }
 
 export default async function CategoryPage({ params }: { params: Promise<{ category: string }> }) {
@@ -44,7 +44,7 @@ export default async function CategoryPage({ params }: { params: Promise<{ categ
 
   // If after all specific checks and general checks it's still empty, return notFound()
   // UNLESS it's a known category like 'bebes' that we just didn't mock yet.
-  if (filteredProducts.length === 0 && !['bebes', 'ofertas', 'dormitorio'].includes(normalizedCategory)) {
+  if (filteredProducts.length === 0 && !['bebes', 'ofertas', 'dormitorio', 'salas', 'comedores', 'decoracion', 'cocina', 'lavanderia'].includes(normalizedCategory)) {
     notFound();
   }
 
