@@ -1,15 +1,22 @@
 @import 'tailwindcss';
 
 @theme {
-  /* Brand Primary Colors (Warm Earth/Wood) */
-  --color-primary-100: #EFEBE9;
-  --color-primary-300: #D7CCC8;
-  --color-primary-500: #795548;
-  --color-primary-700: #4E342E;
-  --color-primary-900: #3E2723;
+  /* Brand Primary Colors (Lindo Hogar) */
+  --color-brand-dark: #111111;
+  --color-brand-light: #F4F4F5;
+  --color-brand-primary: #175d9c;
+  --color-brand-secondary: #e25d6b;
+  --color-brand-accent: #3d4b4a;
+  --color-brand-grayBg: #f2f2f2;
+  --color-brand-borderGray: #e5e7eb;
 
-  /* Accent Color (Terracotta/Clay) */
-  --color-accent-500: #C08552;
+  /* Accent Color (Terracotta/Clay) mapping to red */
+  --color-accent-500: #e25d6b;
+  --color-primary-100: #eef2f5;
+  --color-primary-300: #9ea5a5;
+  --color-primary-500: #175d9c;
+  --color-primary-700: #114b7e;
+  --color-primary-900: #111111;
 
   /* Neutral Scale */
   --color-neutral-50: #FAFAFA;
@@ -26,15 +33,6 @@
 :root {
   --background: var(--color-neutral-50);
   --foreground: var(--color-neutral-900);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    /* For a furniture store, keeping dark mode simple or disabled might be better, 
-       but here is a basic inversion for OS preferences */
-    --background: var(--color-neutral-900);
-    --foreground: var(--color-neutral-50);
-  }
 }
 
 body {
