@@ -16,7 +16,8 @@ export function ProductGrid({
         </h2>
       )}
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-5">
+      {/* Added pt-4 here so the grid contents (like the LH user icons) don't touch the upper border if there's no title */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 md:gap-5 pt-4 md:pt-6">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
