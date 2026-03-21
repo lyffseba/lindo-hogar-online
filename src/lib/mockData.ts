@@ -17,7 +17,7 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Filtro purificador de agua por gravedad, capacidad de 14 litros. Ideal para mantener el agua limpia y fresca en tu cocina.',
     price: 145950,
     category: 'Cocina',
-    imageUrl: 'https://images.unsplash.com/photo-1544457070-4cd773b4d71e?auto=format&fit=crop&q=80&w=800',
+    imageUrl: '/images/products/lho-filtro-agua.png',
     isNew: true,
   },
   {
@@ -27,7 +27,7 @@ export const MOCK_PRODUCTS: Product[] = [
     price: 85950,
     originalPrice: 99950,
     category: 'Alcobas',
-    imageUrl: 'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&q=80&w=800',
+    imageUrl: '/images/products/lho-sabanas-grises.png',
   },
   {
     id: '3',
@@ -36,7 +36,7 @@ export const MOCK_PRODUCTS: Product[] = [
     price: 439950,
     originalPrice: 489950,
     category: 'Cocina',
-    imageUrl: 'https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&q=80&w=800',
+    imageUrl: '/images/products/lho-ollas.png',
   },
   {
     id: '4',
@@ -44,7 +44,7 @@ export const MOCK_PRODUCTS: Product[] = [
     description: 'Freidora de aire digital Oster, cocina saludable sin aceite. Panel táctil y capacidad ideal para la familia.',
     price: 279950,
     category: 'Electrodomésticos',
-    imageUrl: 'https://images.unsplash.com/photo-1584269600464-37b1b58a9fe7?auto=format&fit=crop&q=80&w=800',
+    imageUrl: '/images/products/lho-freidora.png',
   },
   {
     id: '5',
