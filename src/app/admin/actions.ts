@@ -1,11 +1,13 @@
+'use server';
+
 import { db } from '@/db';
-import { products } from '@/db/schema';
+import { products, orders } from '@/db/schema';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { eq } from 'drizzle-orm';
+import { requestPickupFromWarehouse } from '@/lib/logistics';
 
 export async function addProductAction(formData: FormData) {
-  'use server';
-  
   // Basic server action to add a product directly to Supabase
   const name = formData.get('name') as string;
   const description = formData.get('description') as string;
@@ -31,4 +33,28 @@ export async function addProductAction(formData: FormData) {
   revalidatePath('/');
   
   redirect('/admin?success=true');
+}
+
+// Dispatch order directly to Lalamove/Mensajeros Urbanos API
+export async function dispatchOrderAction(orderId: string, customerData: { name: string; phone: string; address: string; city: string }) {
+  // Call our logistics API integration
+  const deliveryData = await requestPickupFromWarehouse({
+    orderId,
+    customerName: customerData.name,
+    customerPhone: customerData.phone,
+    customerAddress: customerData.address,
+    customerCity: customerData.city
+  });
+
+  // Update order in Supabase to 'shipped' and attach the tracking URL/Task ID
+  await db.update(orders)
+    .set({
+      status: 'shipped',
+      deliveryTaskId: deliveryData.taskId,
+      trackingUrl: deliveryData.trackingUrl
+    })
+    .where(eq(orders.id, orderId));
+
+  revalidatePath('/admin');
+  return { success: true, deliveryData };
 }

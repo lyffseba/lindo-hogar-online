@@ -48,7 +48,7 @@ export const products = pgTable('products', {
   name: text('name').notNull(),
   slug: text('slug').notNull().unique(),
   description: text('description'),
-  price: text('price').notNull(), // Change numeric to text or keep numeric and deal with types
+  price: text('price').notNull(), 
   imageUrl: text('image_url'),
   inventory: integer('inventory').notNull().default(0),
   isActive: boolean('is_active').default(true).notNull(),
@@ -58,8 +58,16 @@ export const products = pgTable('products', {
 export const orders = pgTable('orders', {
   id: uuid('id').defaultRandom().primaryKey(),
   userId: uuid('user_id').references(() => users.id).notNull(),
+  customerName: text('customer_name').notNull(),
+  customerPhone: text('customer_phone').notNull(),
+  customerAddress: text('customer_address').notNull(),
+  customerCity: text('customer_city').notNull(),
   totalAmount: text('total_amount').notNull(),
-  status: text('status').default('pending').notNull(),
+  status: text('status').default('pending').notNull(), // pending, paid, shipped, delivered, cancelled
+  shippingMethod: text('shipping_method').default('pickup').notNull(), 
+  trackingUrl: text('tracking_url'),
+  deliveryTaskId: text('delivery_task_id'),
   stripeSessionId: text('stripe_session_id'),
+  mercadopagoId: text('mercadopago_id'),
   createdAt: timestamp('created_at').defaultNow().notNull(),
 });
