@@ -1,9 +1,8 @@
 import Link from 'next/link';
-import { ProductGrid } from '@/components/ui/ProductGrid';
-import { MOCK_PRODUCTS } from '@/lib/mockData';
+import { FeaturedRotation } from '@/components/ui/FeaturedRotation';
 
 export default function Home() {
-  const featuredProducts = MOCK_PRODUCTS.slice(0, 6); // Take 6 for a 3-column Awwwards grid
+   // Take 6 for a 3-column Awwwards grid
 
   return (
     <div className="bg-white font-sans text-[#111111] min-h-screen">
@@ -48,7 +47,7 @@ export default function Home() {
           </Link>
         </div>
         
-        <ProductGrid title="" products={featuredProducts} />
+        <FeaturedRotation />
 
         {/* Category Pills / Circles - Awwwards Style (Bigger, bolder) */}
         <div className="mt-24 md:mt-32 border-t border-gray-200 pt-16 md:pt-24">
