@@ -10,6 +10,7 @@ export default function CheckoutPage() {
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
   const [formData, setFormData] = useState({
     nombre: '',
     telefono: '',
@@ -22,10 +23,13 @@ export default function CheckoutPage() {
 
   useEffect(() => {
     const timer = setTimeout(() => setMounted(true), 10); return () => clearTimeout(timer);
-    if (items.length === 0) {
+  }, []);
+
+  useEffect(() => {
+    if (mounted && items.length === 0) {
       router.push('/catalog');
     }
-  }, [items, router]);
+  }, [mounted, items, router]);
 
   if (!mounted || items.length === 0) return null;
 
@@ -45,22 +49,52 @@ export default function CheckoutPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMsg('');
     
-    // Simulate API call to save order in Supabase
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    // Simulate API call to save order in database (Supabase)
+    // await new Promise(resolve => setTimeout(resolve, 1500));
     
-    // If WhatsApp/Wompi redirect is needed:
-    if (formData.metodoPago === 'whatsapp') {
-      let text = `¡Hola! Acabo de hacer un pedido en Lindo Hogar Online.%0A%0A*Mis Datos:*%0ANombre: ${formData.nombre}%0ATeléfono: ${formData.telefono}%0ADirección: ${formData.direccion}, ${formData.barrio} (${formData.ciudad}, ${formData.departamento})%0A%0A*Mi Pedido:*%0A`;
-      items.forEach((item) => {
-        text += `- ${item.quantity}x ${item.name} (${formatPrice(item.price)})%0A`;
-      });
-      text += `%0A*Total: ${formatPrice(getTotalPrice())}*`;
-      window.open(`https://wa.me/573112774673?text=${text}`, '_blank');
+    try {
+      if (formData.metodoPago === 'whatsapp') {
+        let text = `¡Hola! Acabo de hacer un pedido en Lindo Hogar Online.%0A%0A*Mis Datos:*%0ANombre: ${formData.nombre}%0ATeléfono: ${formData.telefono}%0ADirección: ${formData.direccion}, ${formData.barrio} (${formData.ciudad}, ${formData.departamento})%0A%0A*Mi Pedido:*%0A`;
+        items.forEach((item) => {
+          text += `- ${item.quantity}x ${item.name} (${formatPrice(item.price)})%0A`;
+        });
+        text += `%0A*Total: ${formatPrice(getTotalPrice())}*`;
+        window.open(`https://wa.me/573112774673?text=${text}`, '_blank');
+        clearCart();
+        router.push('/checkout/success');
+      } 
+      else if (formData.metodoPago === 'mercadopago') {
+        // Redirigir a MercadoPago Checkout Pro
+        const res = await fetch('/api/checkout/mercadopago', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items, customer: formData }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Error al conectar con Mercado Pago');
+        if (data.url) window.location.href = data.url;
+      }
+      else if (formData.metodoPago === 'stripe') {
+        // Redirigir a Stripe Checkout
+        const res = await fetch('/api/checkout/stripe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ items, customer: formData }),
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Error al conectar con Stripe');
+        if (data.url) window.location.href = data.url;
+      }
+      else if (formData.metodoPago === 'contra_entrega') {
+        clearCart();
+        router.push('/checkout/success');
+      }
+    } catch (err: any) {
+      setErrorMsg(err.message || "Ocurrió un error inesperado al procesar el pago.");
+      setIsSubmitting(false);
     }
-
-    clearCart();
-    router.push('/checkout/success');
   };
 
   return (
@@ -140,6 +174,22 @@ export default function CheckoutPage() {
                       <span className="text-sm text-gray-500">Nequi, Daviplata o Bancolombia. Validamos contigo en chat.</span>
                     </span>
                   </label>
+
+                  <label className={`flex items-center p-4 border-2 rounded-lg cursor-pointer transition-all ${formData.metodoPago === 'mercadopago' ? 'border-[#009ee3] bg-[#009ee3]/5' : 'border-gray-200 hover:border-gray-300'}`}>
+                    <input type="radio" name="metodoPago" value="mercadopago" checked={formData.metodoPago === 'mercadopago'} onChange={handleInputChange} className="w-5 h-5 text-[#009ee3] border-gray-300 focus:ring-[#009ee3]" />
+                    <span className="ml-3 flex flex-col">
+                      <span className="font-bold text-[#111111]">Mercado Pago (PSE, Tarjetas, Efecty)</span>
+                      <span className="text-sm text-gray-500">Pagos 100% seguros y rápidos en Colombia.</span>
+                    </span>
+                  </label>
+
+                  <label className={`flex items-center p-4 border-2 rounded-lg cursor-pointer transition-all ${formData.metodoPago === 'stripe' ? 'border-[#635BFF] bg-[#635BFF]/5' : 'border-gray-200 hover:border-gray-300'}`}>
+                    <input type="radio" name="metodoPago" value="stripe" checked={formData.metodoPago === 'stripe'} onChange={handleInputChange} className="w-5 h-5 text-[#635BFF] border-gray-300 focus:ring-[#635BFF]" />
+                    <span className="ml-3 flex flex-col">
+                      <span className="font-bold text-[#111111]">Stripe (Tarjeta de Crédito / Débito)</span>
+                      <span className="text-sm text-gray-500">Pasarela internacional. Apple Pay y Google Pay soportados.</span>
+                    </span>
+                  </label>
                   
                   <label className={`flex items-center p-4 border-2 rounded-lg cursor-pointer transition-all ${formData.metodoPago === 'contra_entrega' ? 'border-[#175d9c] bg-blue-50' : 'border-gray-200 hover:border-gray-300'}`}>
                     <input type="radio" name="metodoPago" value="contra_entrega" checked={formData.metodoPago === 'contra_entrega'} onChange={handleInputChange} className="w-5 h-5 text-[#175d9c] border-gray-300 focus:ring-[#175d9c]" />
@@ -148,15 +198,14 @@ export default function CheckoutPage() {
                       <span className="text-sm text-gray-500">Pagas en efectivo al recibir en la puerta de tu casa.</span>
                     </span>
                   </label>
-
-                  <label className={`flex items-center p-4 border-2 rounded-lg cursor-pointer transition-all opacity-50 ${formData.metodoPago === 'wompi' ? 'border-[#111111]' : 'border-gray-200'}`}>
-                    <input disabled type="radio" name="metodoPago" value="wompi" className="w-5 h-5" />
-                    <span className="ml-3 flex flex-col">
-                      <span className="font-bold text-[#111111] flex items-center gap-2">Tarjeta de Crédito / PSE <span className="bg-gray-200 text-gray-600 text-[10px] px-2 py-0.5 rounded-full uppercase">Próximamente</span></span>
-                      <span className="text-sm text-gray-500">Pagos en línea con Wompi o MercadoPago.</span>
-                    </span>
-                  </label>
                 </div>
+                
+                {errorMsg && (
+                  <div className="mt-4 p-3 bg-red-50 text-red-700 text-sm font-medium rounded-lg border border-red-200">
+                    {errorMsg}
+                  </div>
+                )}
+
               </section>
 
               <button 
@@ -164,7 +213,12 @@ export default function CheckoutPage() {
                 disabled={isSubmitting}
                 className="w-full py-4 bg-[#111111] hover:bg-black text-white font-black text-xl rounded-xl shadow-lg transition-all transform hover:-translate-y-1 disabled:opacity-50 disabled:transform-none flex items-center justify-center gap-2"
               >
-                {isSubmitting ? 'Procesando...' : (formData.metodoPago === 'whatsapp' ? 'Confirmar y Pagar por WhatsApp' : 'Confirmar Pedido')}
+                {isSubmitting ? 'Procesando...' : (
+                  formData.metodoPago === 'whatsapp' ? 'Confirmar y Pagar por WhatsApp' : 
+                  formData.metodoPago === 'mercadopago' ? 'Pagar Seguro con Mercado Pago' :
+                  formData.metodoPago === 'stripe' ? 'Pagar con Stripe' :
+                  'Confirmar Pedido'
+                )}
               </button>
             </form>
           </div>
@@ -196,7 +250,7 @@ export default function CheckoutPage() {
                 </div>
                 <div className="flex justify-between text-gray-600">
                   <span>Envío</span>
-                  <span className="text-green-600 font-bold">Por calcular</span>
+                  <span className="text-green-600 font-bold">Gratis</span>
                 </div>
                 <div className="border-t border-gray-200 pt-4 flex justify-between items-end">
                   <span className="text-lg font-bold text-[#111111]">Total</span>
