@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { signIn } from '../../../../auth';
+import { signIn } from '../../../auth';
 
 export default function AccountPage() {
   return (
