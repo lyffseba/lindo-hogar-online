@@ -12,8 +12,10 @@ describe('AddToCartButton', () => {
   const mockProduct = {
     id: '123',
     name: 'Test Product',
+    description: 'A product for testing',
+    category: 'Test Category',
     price: 100,
-    image: '/test.png',
+    imageUrl: '/test.png',
   };
 
   it('renders correctly', () => {
